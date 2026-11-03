@@ -1,75 +1,136 @@
-# React + TypeScript + Vite
+# Victor Manuel Vargas | Software Engineer Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio developed to showcase my professional experience, technical skills, projects, and knowledge in software development, frontend engineering, and design systems.
 
-Currently, two official plugins are available:
+🌐 **Live Demo:** [victor-portfolio-alpha-steel.vercel.app](https://victor-portfolio-alpha-steel.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+💻 **Repository:** [victor-portfolio](https://github.com/Manuelvargas52/victor-portfolio)
 
-## React Compiler
+## About the project
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This portfolio was designed as a personal space to present my professional background and demonstrate my frontend development skills through reusable components, interactive interfaces, responsive layouts, and animations.
 
-## Expanding the ESLint configuration
+## Technologies
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Frontend:** React 19, TypeScript
+- **Build tool:** Vite
+- **Styling:** Tailwind CSS
+- **Animations:** Motion
+- **Icons:** Lucide React
+- **Testing:** Vitest
+- **Version control:** Git and GitHub
+- **Deployment:** Vercel
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Features
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Responsive design for desktop and mobile devices.
+- Professional presentation and career summary.
+- Professional experience and education sections.
+- Technical skills organized by categories.
+- Interactive Design System Showcase.
+- Reusable UI components and interactive playground.
+- Project portfolio section.
+- CV download functionality.
+- Contact links and professional profiles.
+- Accessible navigation and reduced-motion support.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Getting started
 
+### Prerequisites
+
+Make sure you have installed:
+
+- Node.js
+- npm
+- Git
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Manuelvargas52/victor-portfolio.git
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Navigate to the project
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+cd victor-portfolio
 ```
+
+### 3. Install dependencies
+
+```bash
+npm install
+```
+
+### 4. Start the development server
+
+```bash
+npm run dev
+```
+
+Open the local URL provided by Vite, usually:
+
+```text
+http://localhost:5173/
+```
+
+## Available commands
+
+| Command | Description |
+|---|---|
+| `npm install` | Install project dependencies |
+| `npm run dev` | Start development server |
+| `npm run build` | Generate production build |
+| `npm run test` | Run tests |
+| `npx vitest run --coverage` | Run tests and generate coverage report |
+| `npm run preview` | Preview production build locally |
+
+## Project structure
+
+```text
+victor-portfolio/
+├── public/
+│   ├── projects/
+│   ├── Victor_Manuel_Vargas_CV.pdf
+│   └── favicon.svg
+├── src/
+│   ├── components/
+│   │   ├── ui/
+│   │   └── Navbar.tsx
+│   ├── sections/
+│   │   ├── Hero.tsx
+│   │   ├── About.tsx
+│   │   ├── Experience.tsx
+│   │   ├── Projects.tsx
+│   │   ├── Skills.tsx
+│   │   ├── Education.tsx
+│   │   └── Contact.tsx
+│   ├── test/
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── index.css
+├── index.html
+├── package.json
+└── vite.config.ts
+```
+
+## Deployment
+
+The application is deployed using Vercel and connected to the GitHub repository.
+
+Every push to the production branch triggers a new deployment.
+
+## Author
+
+**Victor Manuel Vargas**
+
+Systems Engineer | Frontend Developer | Design Systems
+
+- **Portfolio:** https://victor-portfolio-alpha-steel.vercel.app/
+- **GitHub:** https://github.com/Manuelvargas52
+- **LinkedIn:** https://www.linkedin.com/in/manuel-vargas-639914266/
+- **Email:** manuelvargasr9@gmail.com
+
+---
+
+If you find this project interesting, feel free to explore the repository and connect with me.
