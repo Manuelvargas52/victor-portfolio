@@ -1,6 +1,19 @@
 # Victor Manuel Vargas | Software Engineer Portfolio
 
-Personal portfolio developed to showcase my professional experience, technical skills, projects, and knowledge in software development, frontend engineering, and design systems.
+Portafolio profesional desarrollado con React, TypeScript y Vite
+para presentar mi experiencia en ingeniería de software,
+desarrollo frontend y backend, integración de servicios,
+bases de datos y análisis de datos.
+
+## Areas of expertise
+
+- Frontend Development
+- Backend Development
+- REST API Integration
+- Database Management
+- Software Testing
+- Data Analytics
+- Component Architecture and Design Systems
 
 🌐 **Live Demo:** [victor-portfolio-alpha-steel.vercel.app](https://victor-portfolio-alpha-steel.vercel.app/)
 

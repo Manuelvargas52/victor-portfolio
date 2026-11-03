@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import {
     Code2,
     Layers3,
-    Rocket,
+    Database,
     Users,
     Component,
     Workflow,
@@ -42,27 +42,27 @@ const stats = [
 const strengths = [
     {
         icon: Code2,
-        title: 'Desarrollo frontend',
+        title: 'Desarrollo de software',
         description:
-            'Construcción de aplicaciones web modernas, escalables y mantenibles utilizando Angular, React y TypeScript.',
-    },
-    {
-        icon: Layers3,
-        title: 'Design Systems',
-        description:
-            'Creación y mantenimiento de librerías de componentes reutilizables bajo principios de Atomic Design.',
+            'Construcción de aplicaciones y soluciones tecnológicas utilizando diferentes lenguajes, frameworks y buenas prácticas.',
     },
     {
         icon: Workflow,
-        title: 'Calidad de software',
+        title: 'Integración backend',
         description:
-            'Implementación de pruebas unitarias, buenas prácticas de desarrollo y componentes accesibles.',
+            'Integración entre frontend y backend, consumo de servicios y conexión de aplicaciones con fuentes de datos.',
     },
     {
-        icon: Rocket,
-        title: 'Aprendizaje continuo',
+        icon: Database,
+        title: 'Bases de datos y analítica',
         description:
-            'Interés por nuevas tecnologías, arquitectura de software y soluciones que generen valor al negocio.',
+            'Consultas SQL, gestión de bases de datos, automatización con Python y visualización de información.',
+    },
+    {
+        icon: Layers3,
+        title: 'Arquitectura y componentes',
+        description:
+            'Creación de componentes reutilizables, organización de interfaces y aplicación de buenas prácticas de desarrollo y mantenimiento.',
     },
 ];
 
@@ -104,27 +104,25 @@ function About() {
                     </h2>
 
                     <p className="text-gray-400 text-lg leading-relaxed mt-7">
-                        Soy Ingeniero de Sistemas con experiencia en desarrollo de
-                        software, especializado en aplicaciones web, Design Systems
-                        y arquitectura de componentes reutilizables. Me enfoco en
-                        construir soluciones escalables, accesibles y mantenibles
-                        utilizando tecnologías modernas.
+                        Soy Ingeniero de Sistemas con experiencia en desarrollo de software,
+                        enfocado en la construcción de aplicaciones, integración de servicios
+                        y soluciones tecnológicas orientadas a las necesidades del negocio.
+                        He trabajado principalmente con Angular, React, TypeScript, Java
+                        y Spring Boot.
                     </p>
 
                     <p className="text-gray-400 text-lg leading-relaxed mt-5">
-                        He participado en la construcción y mantenimiento de
-                        librerías de componentes para entornos web y móviles,
-                        trabajando con Angular, React, Stencil, Kotlin y React Native.
-                        También cuento con experiencia en integración backend,
-                        bases de datos y análisis de datos mediante Python, SQL y Power BI.
+                        Mi experiencia abarca el desarrollo frontend, consumo e integración
+                        de APIs REST, manejo de bases de datos relacionales y automatización
+                        de procesos utilizando Python y SQL. También he participado en
+                        proyectos de análisis y visualización de datos con Power BI.
                     </p>
 
                     <p className="text-gray-400 text-lg leading-relaxed mt-5">
-                        Durante mi trayectoria he trabajado con diferentes
-                        tecnologías y equipos de desarrollo, participando
-                        en la construcción de librerías de componentes
-                        multiplataforma y soluciones orientadas a mejorar
-                        la productividad de los equipos.
+                        Adicionalmente, cuento con experiencia en la creación y mantenimiento
+                        de Design Systems y librerías de componentes reutilizables para
+                        plataformas web y móviles, aplicando principios de Atomic Design,
+                        pruebas unitarias, accesibilidad y buenas prácticas de desarrollo.
                     </p>
                 </motion.div>
 

@@ -95,10 +95,10 @@ const Contact = () => {
                         </h3>
 
                         <p className="text-gray-400 leading-relaxed mb-8">
-                            Me interesa participar en proyectos donde pueda
-                            aportar mis conocimientos en desarrollo frontend,
-                            arquitectura de componentes y construcción de
-                            soluciones escalables.
+                            Me interesa participar en proyectos donde pueda aportar mis
+                            conocimientos en desarrollo de software, construcción de
+                            aplicaciones web, integración de servicios y gestión de datos,
+                            trabajando en soluciones escalables que generen valor.
                         </p>
 
                         <a

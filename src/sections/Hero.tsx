@@ -10,10 +10,20 @@ import {
 const technologies = [
     'Angular',
     'React',
-    'TypeScript',
     'Stencil',
+    'TypeScript',
     'JavaScript',
     'Java',
+    'Spring Boot',
+    'Kotlin',
+    'PHP',
+    'React Native',
+    'Python',
+    'SQL',
+    'MySQL',
+    'PostgreSQL',
+    'Power BI',
+    'Git',
 ];
 
 function Hero() {
@@ -75,14 +85,16 @@ function Hero() {
                     <h2 className="text-xl md:text-2xl text-gray-300 mt-7">
                         Software Engineer
                         <span className="text-blue-500"> | </span>
-                        Frontend & Design Systems Developer
+                        Full Stack Developer
                     </h2>
 
                     <p className="text-gray-400 text-lg leading-relaxed mt-6 max-w-xl">
-                        Ingeniero de Sistemas especializado en el desarrollo de
-                        aplicaciones web, Design Systems y arquitecturas de
-                        componentes reutilizables. Me apasiona transformar
-                        problemas complejos en soluciones digitales escalables.
+                        Ingeniero de Sistemas con experiencia en desarrollo de software,
+                        construcción de aplicaciones web, integración de servicios backend
+                        y gestión de bases de datos. He trabajado con tecnologías como
+                        Angular, React, Java, Spring Boot, Python y SQL, participando
+                        en soluciones que abarcan desde la interfaz de usuario hasta
+                        el procesamiento y gestión de información.
                     </p>
 
                     <div className="flex flex-wrap gap-4 mt-10">
@@ -104,12 +116,12 @@ function Hero() {
                         </a>
                     </div>
 
-                    <div className="mt-14">
+                    <div className="mt-14 pb-10">
                         <p className="text-gray-500 text-xs uppercase tracking-widest mb-5">
                             Stack tecnológico
                         </p>
 
-                        <div className="flex flex-wrap gap-3">
+                        <div className="flex flex-wrap gap-x-3 gap-y-4">
                             {technologies.map((tech) => (
                                 <span
                                     key={tech}

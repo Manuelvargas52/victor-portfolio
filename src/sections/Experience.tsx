@@ -14,15 +14,17 @@ const experiences = [
         role: 'Profesional II – Frontend Developer',
         period: 'Octubre 2024 – Octubre 2026',
         description:
-            'Desarrollo y mantenimiento de soluciones frontend y librerías de componentes reutilizables para diferentes plataformas y equipos de desarrollo.',
+            'Desarrollo de soluciones frontend y aplicaciones web, integración de funcionalidades y participación en la evolución de componentes reutilizables para diferentes plataformas.',
         achievements: [
+            'Desarrollo de funcionalidades e interfaces web utilizando Angular, React, TypeScript y JavaScript.',
+            'Integración de aplicaciones frontend con servicios backend y APIs.',
+            'Desarrollo y mantenimiento de funcionalidades e interfaces web para diferentes plataformas.',
             'Desarrollo y mantenimiento de una librería web con más de 50 componentes utilizando Stencil.',
-            'Implementación de componentes bajo los principios de Atomic Design.',
             'Contribución a un Design System adoptado por más de 10 equipos internos.',
             'Desarrollo de más de 20 componentes nativos para Kotlin y más de 10 para React Native.',
             'Participación en el desarrollo y mantenimiento de una librería corporativa con más de 400 iconos para entornos web y móviles.',
             'Implementación de pruebas unitarias, accesibilidad y diseño responsive.',
-            'Publicación y gestión de paquetes mediante herramientas como NPM, Maven y JFrog.',
+            'Publicación y gestión de paquetes mediante NPM, Maven y JFrog.',
         ],
         technologies: [
             'Angular',

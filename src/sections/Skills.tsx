@@ -45,8 +45,8 @@ const skillCategories = [
         ],
     },
     {
-        title: 'Mobile Development',
-        description: 'Desarrollo de componentes para plataformas móviles.',
+        title: 'Desarrollo móvil',
+        description: 'Desarrollo de servicios, lógica de negocio e integración de aplicaciones.',
         icon: Smartphone,
         skills: ['Kotlin', 'React Native'],
     },
