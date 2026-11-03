@@ -1,39 +1,103 @@
 
-import { useState } from 'react';
-import { Menu, X, Code2, BriefcaseBusiness, Mail } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import {
+    Menu,
+    X,
+    Code2,
+    BriefcaseBusiness,
+    Mail,
+} from 'lucide-react';
+
+const links = [
+    { name: 'Inicio', href: '#inicio', id: 'inicio' },
+    { name: 'Sobre mí', href: '#sobre-mi', id: 'sobre-mi' },
+    { name: 'Experiencia', href: '#experiencia', id: 'experiencia' },
+    { name: 'Proyectos', href: '#proyectos', id: 'proyectos' },
+    { name: 'Habilidades', href: '#habilidades', id: 'habilidades' },
+    { name: 'Formación', href: '#formacion', id: 'formacion' },
+    { name: 'Contacto', href: '#contacto', id: 'contacto' },
+];
+
+const socialLinks = [
+    {
+        name: 'GitHub',
+        href: 'https://github.com/Manuelvargas52',
+        icon: Code2,
+    },
+    {
+        name: 'LinkedIn',
+        href: 'https://www.linkedin.com/in/manuel-vargas-639914266',
+        icon: BriefcaseBusiness,
+    },
+    {
+        name: 'Correo electrónico',
+        href: 'mailto:manuelvargasr9@gmail.com',
+        icon: Mail,
+    },
+];
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [activeSection, setActiveSection] = useState('inicio');
 
-    const links = [
-        { name: 'Inicio', href: '#inicio' },
-        { name: 'Sobre mí', href: '#sobre-mi' },
-        { name: 'Experiencia', href: '#experiencia' },
-        { name: 'Proyectos', href: '#proyectos' },
-        { name: 'Habilidades', href: '#habilidades' },
-        { name: 'Formación', href: '#formacion' },
-        { name: 'Contacto', href: '#contacto' },
-    ];
+    useEffect(() => {
+        const updateActiveSection = () => {
+            const marker = window.innerHeight * 0.35;
+            let currentSection = links[0].id;
 
-    const socialLinks = [
-        {
-            name: 'GitHub',
-            href: 'https://github.com/Manuelvargas52',
-            icon: Code2,
-        },
-        {
-            name: 'LinkedIn',
-            href: 'https://www.linkedin.com/in/manuel-vargas-639914266',
-            icon: BriefcaseBusiness,
-        },
-        {
-            name: 'Correo electrónico',
-            href: 'mailto:manuelvargasr9@gmail.com',
-            icon: Mail,
-        },
-    ];
+            for (const link of links) {
+                const section = document.getElementById(link.id);
+
+                if (!section) continue;
+
+                const rect = section.getBoundingClientRect();
+
+                if (rect.top <= marker && rect.bottom > marker) {
+                    currentSection = link.id;
+                    break;
+                }
+
+                if (rect.top <= marker) {
+                    currentSection = link.id;
+                }
+            }
+
+            // Marcar Contacto al llegar al final de la página.
+            const reachedBottom =
+                window.innerHeight + window.scrollY >=
+                document.documentElement.scrollHeight - 2;
+
+            if (reachedBottom) {
+                currentSection = links[links.length - 1].id;
+            }
+
+            setActiveSection(currentSection);
+        };
+
+        updateActiveSection();
+
+        window.addEventListener('scroll', updateActiveSection, {
+            passive: true,
+        });
+
+        window.addEventListener('resize', updateActiveSection);
+
+        return () => {
+            window.removeEventListener('scroll', updateActiveSection);
+            window.removeEventListener('resize', updateActiveSection);
+        };
+    }, []);
 
     const closeMenu = () => setMenuOpen(false);
+
+    const getLinkClasses = (id: string) => `
+        relative text-sm transition-colors duration-300
+        ${
+            activeSection === id
+                ? 'text-blue-400 font-semibold'
+                : 'text-gray-400 hover:text-white'
+        }
+    `;
 
     return (
         <nav
@@ -56,11 +120,20 @@ const Navbar = () => {
                 <div className="hidden md:flex items-center gap-8">
                     {links.map((link) => (
                         <a
-                            key={link.name}
+                            key={link.id}
                             href={link.href}
-                            className="text-sm text-gray-400 hover:text-white transition-colors"
+                            aria-current={
+                                activeSection === link.id
+                                    ? 'location'
+                                    : undefined
+                            }
+                            className={getLinkClasses(link.id)}
                         >
                             {link.name}
+
+                            {activeSection === link.id && (
+                                <span className="absolute -bottom-2 left-0 w-full h-0.5 rounded-full bg-blue-400" />
+                            )}
                         </a>
                     ))}
                 </div>
@@ -71,9 +144,18 @@ const Navbar = () => {
                         <a
                             key={name}
                             href={href}
-                            target={href.startsWith('mailto:') ? undefined : '_blank'}
-                            rel={href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+                            target={
+                                href.startsWith('mailto:')
+                                    ? undefined
+                                    : '_blank'
+                            }
+                            rel={
+                                href.startsWith('mailto:')
+                                    ? undefined
+                                    : 'noopener noreferrer'
+                            }
                             aria-label={name}
+                            title={name}
                             className="text-gray-400 hover:text-white transition-colors"
                         >
                             <Icon size={20} aria-hidden="true" />
@@ -82,6 +164,7 @@ const Navbar = () => {
 
                     <a
                         href="#contacto"
+                        onClick={closeMenu}
                         className="px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium transition-all"
                     >
                         Hablemos
@@ -114,10 +197,19 @@ const Navbar = () => {
                 <div className="flex flex-col">
                     {links.map((link) => (
                         <a
-                            key={link.name}
+                            key={link.id}
                             href={link.href}
                             onClick={closeMenu}
-                            className="block py-3 text-gray-300 hover:text-blue-400 transition-colors"
+                            aria-current={
+                                activeSection === link.id
+                                    ? 'location'
+                                    : undefined
+                            }
+                            className={`block py-3 transition-colors ${
+                                activeSection === link.id
+                                    ? 'text-blue-400 font-semibold'
+                                    : 'text-gray-300 hover:text-blue-400'
+                            }`}
                         >
                             {link.name}
                         </a>
@@ -129,8 +221,16 @@ const Navbar = () => {
                         <a
                             key={name}
                             href={href}
-                            target={href.startsWith('mailto:') ? undefined : '_blank'}
-                            rel={href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+                            target={
+                                href.startsWith('mailto:')
+                                    ? undefined
+                                    : '_blank'
+                            }
+                            rel={
+                                href.startsWith('mailto:')
+                                    ? undefined
+                                    : 'noopener noreferrer'
+                            }
                             aria-label={name}
                             className="text-gray-400 hover:text-white transition-colors"
                         >

@@ -175,6 +175,10 @@ function Hero() {
                     </div>
                 </motion.div>
             </div>
+              <div
+                aria-hidden="true"
+                className="absolute bottom-0 left-0 w-full h-px bg-white/10"
+            />
         </section>
     );
 }

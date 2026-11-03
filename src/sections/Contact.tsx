@@ -180,6 +180,7 @@ const Contact = () => {
                     </p>
                 </footer>
             </div>
+            
         </section>
     );
 };

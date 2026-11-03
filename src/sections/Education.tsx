@@ -141,6 +141,7 @@ function Education() {
                         );
                     })}
 
+                    {/* Aprendizaje continuo */}
                     <motion.article
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -180,76 +181,126 @@ function Education() {
                     transition={{ duration: 0.6 }}
                     className="mt-16"
                 >
-                    <div className="flex items-center gap-3 mb-8">
-                        <div className="p-3 rounded-xl bg-blue-500/10 text-blue-400">
-                            <Award size={24} aria-hidden="true" />
+                    {/* Título y controles */}
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 mb-8">
+                        <div className="flex items-center gap-3">
+                            <div className="p-3 rounded-xl bg-blue-500/10 text-blue-400">
+                                <Award size={24} aria-hidden="true" />
+                            </div>
+
+                            <div>
+                                <h3 className="text-2xl font-bold text-white">
+                                    Certificaciones
+                                </h3>
+                                <p className="text-gray-400 text-sm mt-1">
+                                    Cursos y formación complementaria
+                                </p>
+                            </div>
                         </div>
 
-                        <div>
-                            <h3 className="text-2xl font-bold text-white">
-                                Certificaciones
-                            </h3>
+                        <div className="flex items-center gap-3">
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    const container = document.getElementById(
+                                        'certifications-carousel'
+                                    );
 
-                            <p className="text-gray-400 text-sm mt-1">
-                                Cursos y formación complementaria
-                            </p>
+                                    container?.scrollBy({
+                                        left: -container.clientWidth,
+                                        behavior: 'smooth',
+                                    });
+                                }}
+                                aria-label="Certificaciones anteriores"
+                                className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:border-blue-500/50 transition-all"
+                            >
+                                <span aria-hidden="true">←</span>
+                            </button>
+
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    const container = document.getElementById(
+                                        'certifications-carousel'
+                                    );
+
+                                    container?.scrollBy({
+                                        left: container.clientWidth,
+                                        behavior: 'smooth',
+                                    });
+                                }}
+                                aria-label="Siguientes certificaciones"
+                                className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:border-blue-500/50 transition-all"
+                            >
+                                <span aria-hidden="true">→</span>
+                            </button>
                         </div>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {/* Carrusel */}
+                    <div
+                        id="certifications-carousel"
+                        className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                    >
                         {certifications.map((certification, index) => (
                             <motion.article
                                 key={certification.credentialId}
-                                initial={{ opacity: 0, y: 20 }}
+                                initial={{ opacity: 0, y: 15 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{
                                     duration: 0.4,
                                     delay: index * 0.1,
                                 }}
-                                className="flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-blue-500/30 transition-all"
+                                className="flex flex-col flex-none w-[72%] sm:w-[calc(40%-12px)] lg:w-[calc(25%-12px)] snap-start p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-blue-500/30 transition-all"
                             >
-                                <div className="flex items-center justify-between mb-6">
-                                    <div className="p-3 rounded-xl bg-blue-500/10 text-blue-400">
-                                        <Award size={22} aria-hidden="true" />
+                                <div className="flex items-center justify-between gap-2 mb-4">
+                                    <div className="p-2 rounded-lg bg-blue-500/10 text-blue-400">
+                                        <Award size={18} aria-hidden="true" />
                                     </div>
 
-                                    <span className="text-xs text-gray-500">
+                                    <span className="text-[11px] text-gray-500 text-right">
                                         {certification.platform}
                                     </span>
                                 </div>
 
-                                <h4 className="text-lg font-semibold text-white leading-snug mb-4">
+                                <h4 className="text-sm font-semibold text-white leading-snug mb-3">
                                     {certification.name}
                                 </h4>
 
                                 {certification.trainer && (
-                                    <p className="text-gray-500 text-xs mb-4">
+                                    <p className="text-gray-500 text-xs mb-3">
                                         {certification.trainer}
                                     </p>
                                 )}
 
-                                <div className="flex items-center gap-2 text-sm text-gray-400 mb-6">
-                                    <CalendarDays size={15} aria-hidden="true" />
+                                <div className="flex items-center gap-2 text-xs text-gray-400 mb-3">
+                                    <CalendarDays size={13} aria-hidden="true" />
                                     {certification.date}
                                 </div>
 
-                                <div className="mt-auto">
-                                    <a
-                                        href={certification.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-2 text-sm text-blue-400 hover:text-blue-300 transition-colors"
-                                    >
-                                        Ver certificado
-                                        <Award size={16} aria-hidden="true" />
-                                    </a>
-                                </div>
+                                <a
+                                    href={certification.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors w-fit"
+                                >
+                                    Ver certificado
+                                    <Award size={14} aria-hidden="true" />
+                                </a>
                             </motion.article>
                         ))}
                     </div>
+
+                    <p className="text-xs text-gray-500 mt-2">
+                        Desliza para explorar todas las certificaciones.
+                    </p>
                 </motion.div>
             </div>
+              <div
+                aria-hidden="true"
+                className="absolute bottom-0 left-0 w-full h-px bg-white/10"
+            />
         </section>
     );
 }
