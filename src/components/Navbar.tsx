@@ -113,7 +113,7 @@ const Navbar = () => {
                     aria-label="Victor, ir al inicio"
                     className="text-xl font-bold tracking-tight"
                 >
-                    VICTOR<span className="text-blue-500">.</span>
+                    Manuel Vargas<span className="text-blue-500">.</span>
                 </a>
 
                 {/* Desktop navigation */}

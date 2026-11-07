@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import { motion } from 'motion/react';
+
 import {
     Layers3,
     Code2,
@@ -63,12 +64,37 @@ const projects = [
 ];
 
 // ======================================================
+// CATEGORÍAS DINÁMICAS
+// Solo aparecen las categorías que tienen proyectos.
+// ======================================================
+
+const getProjectFilters = () => {
+    const categories = Array.from(
+        new Set(projects.map((project) => project.category))
+    );
+
+    return ['Todos', ...categories];
+};
+
+// ======================================================
 // COMPONENTE PRINCIPAL
 // ======================================================
 
 function Projects() {
     const [buttonClicked, setButtonClicked] = useState(false);
     const [inputValue, setInputValue] = useState('');
+    const [activeFilter, setActiveFilter] = useState('Todos');
+
+    // Obtener únicamente las categorías disponibles.
+    const availableFilters = getProjectFilters();
+
+    // Filtrar proyectos según la categoría seleccionada.
+    const filteredProjects =
+        activeFilter === 'Todos'
+            ? projects
+            : projects.filter(
+                (project) => project.category === activeFilter
+            );
 
     return (
         <section
@@ -111,13 +137,15 @@ function Projects() {
 
                     <p className="text-gray-400 text-lg mt-6 leading-relaxed">
                         Proyectos y demostraciones que reflejan mi experiencia
-                        en desarrollo frontend, arquitectura de componentes
+                        en desarrollo frontend, backend, aplicaciones Full Stack
                         y análisis de datos.
                     </p>
                 </motion.div>
 
                 {/* ====================================== */}
                 {/* DESIGN SYSTEM SHOWCASE */}
+                {/* Proyecto destacado independiente */}
+                {/* de los filtros del catálogo. */}
                 {/* ====================================== */}
 
                 <motion.article
@@ -338,161 +366,227 @@ function Projects() {
 
                 {/* ====================================== */}
                 {/* CATÁLOGO DE OTROS PROYECTOS */}
+                {/* Solo aparece si existen proyectos. */}
                 {/* ====================================== */}
 
-                <motion.div
-                    initial={{ opacity: 0, y: 25 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="mt-20"
-                >
-                    <div className="max-w-3xl mb-10">
-                        <p className="text-blue-400 text-sm font-semibold tracking-widest uppercase mb-3">
-                            Mi trabajo
-                        </p>
+                {projects.length > 0 && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 25 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="mt-20"
+                    >
+                        <div className="max-w-3xl mb-10">
+                            <p className="text-blue-400 text-sm font-semibold tracking-widest uppercase mb-3">
+                                Mi trabajo
+                            </p>
 
-                        <h3 className="text-3xl md:text-4xl font-bold mb-4">
-                            Otros proyectos.
-                        </h3>
+                            <h3 className="text-3xl md:text-4xl font-bold mb-4">
+                                Otros proyectos.
+                            </h3>
 
-                        <p className="text-gray-400 leading-relaxed">
-                            Una selección de desarrollos y demostraciones que
-                            reflejan mis conocimientos en frontend, backend y
-                            desarrollo full stack.
-                        </p>
-                    </div>
+                            <p className="text-gray-400 leading-relaxed">
+                                Explora mis desarrollos y demostraciones
+                                clasificados por área tecnológica.
+                            </p>
+                        </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {projects.map((project, index) => (
-                            <motion.article
-                                key={project.id}
-                                aria-labelledby={`project-title-${project.id}`}
-                                initial={{ opacity: 0, y: 25 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{
-                                    duration: 0.5,
-                                    delay: index * 0.1,
-                                }}
-                                className="overflow-hidden rounded-2xl bg-[#101522] border border-white/10 hover:border-blue-500/40 transition-all"
+                        {/* ====================================== */}
+                        {/* FILTROS DINÁMICOS */}
+                        {/* ====================================== */}
+
+                        {availableFilters.length > 1 && (
+                            <div
+                                className="flex flex-wrap gap-3 mb-10"
+                                role="group"
+                                aria-label="Filtrar proyectos por categoría"
                             >
-                                {/* Imagen del proyecto */}
-                                <div className="relative h-48 bg-gradient-to-br from-blue-950 via-[#111827] to-purple-950">
-                                    <img
-                                        src={project.image}
-                                        alt={`Vista previa de ${project.title}`}
-                                        className="w-full h-full object-cover"
-                                        loading="lazy"
-                                        onError={(event) => {
-                                            event.currentTarget.style.display =
-                                                'none';
-                                        }}
-                                    />
+                                {availableFilters.map((filter) => {
+                                    const isActive = activeFilter === filter;
 
-                                    <div className="absolute top-4 left-4">
-                                        <Badge variant="info">
-                                            {project.category}
-                                        </Badge>
+                                    return (
+                                        <button
+                                            key={filter}
+                                            type="button"
+                                            onClick={() => setActiveFilter(filter)}
+                                            aria-pressed={isActive}
+                                            className={`
+                                                px-5 py-2.5 rounded-full text-sm font-medium
+                                                border transition-all duration-300
+                                                ${isActive
+                                                    ? 'bg-blue-600 border-blue-500 text-white shadow-lg shadow-blue-600/20'
+                                                    : 'bg-white/5 border-white/10 text-gray-400 hover:text-white hover:border-blue-500/50 hover:bg-blue-500/10'
+                                                }
+                                            `}
+                                        >
+                                            {filter}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        )}
+
+                        {/* Contador de resultados */}
+                        <div
+                            className="flex items-center justify-between mb-6"
+                            aria-live="polite"
+                        >
+                            <p className="text-sm text-gray-500">
+                                {activeFilter === 'Todos'
+                                    ? 'Todos los proyectos'
+                                    : `Categoría: ${activeFilter}`}
+                            </p>
+
+                            <span className="text-xs text-gray-500">
+                                {filteredProjects.length}{' '}
+                                {filteredProjects.length === 1
+                                    ? 'proyecto'
+                                    : 'proyectos'}
+                            </span>
+                        </div>
+
+                        {/* ====================================== */}
+                        {/* TARJETAS DE PROYECTOS */}
+                        {/* ====================================== */}
+
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                            {filteredProjects.map((project, index) => (
+                                <motion.article
+                                    key={project.id}
+                                    aria-labelledby={`project-title-${project.id}`}
+                                    initial={{ opacity: 0, y: 25 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{
+                                        duration: 0.5,
+                                        delay: index * 0.1,
+                                    }}
+                                    className="overflow-hidden rounded-2xl bg-[#101522] border border-white/10 hover:border-blue-500/40 transition-all"
+                                >
+                                    {/* Imagen del proyecto */}
+                                    <div className="relative h-48 bg-gradient-to-br from-blue-950 via-[#111827] to-purple-950">
+                                        {project.image && (
+                                            <img
+                                                src={project.image}
+                                                alt={`Vista previa de ${project.title}`}
+                                                className="w-full h-full object-cover"
+                                                loading="lazy"
+                                                onError={(event) => {
+                                                    event.currentTarget.style.display =
+                                                        'none';
+                                                }}
+                                            />
+                                        )}
+
+                                        <div className="absolute top-4 left-4">
+                                            <Badge variant="info">
+                                                {project.category}
+                                            </Badge>
+                                        </div>
                                     </div>
-                                </div>
 
-                                {/* Información del proyecto */}
-                                <div className="p-6">
-                                    <h4
-                                        id={`project-title-${project.id}`}
-                                        className="text-xl font-bold mb-3"
-                                    >
-                                        {project.title}
-                                    </h4>
+                                    {/* Información del proyecto */}
+                                    <div className="p-6">
+                                        <h4
+                                            id={`project-title-${project.id}`}
+                                            className="text-xl font-bold mb-3"
+                                        >
+                                            {project.title}
+                                        </h4>
 
-                                    <p className="text-gray-400 text-sm leading-relaxed mb-6">
-                                        {project.description}
-                                    </p>
+                                        <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                                            {project.description}
+                                        </p>
 
-                                    {/* Frontend y Backend */}
-                                    <div className="space-y-4 mb-6">
-                                        <div>
-                                            <p className="text-blue-400 text-xs font-semibold uppercase mb-2">
-                                                Frontend
-                                            </p>
+                                        {/* Frontend y Backend */}
+                                        <div className="space-y-4 mb-6">
+                                            <div>
+                                                <p className="text-blue-400 text-xs font-semibold uppercase mb-2">
+                                                    Frontend
+                                                </p>
 
-                                            <p className="text-gray-400 text-sm">
-                                                {project.frontend}
-                                            </p>
+                                                <p className="text-gray-400 text-sm">
+                                                    {project.frontend}
+                                                </p>
+                                            </div>
+
+                                            <div>
+                                                <p className="text-purple-400 text-xs font-semibold uppercase mb-2">
+                                                    Backend
+                                                </p>
+
+                                                <p className="text-gray-400 text-sm">
+                                                    {project.backend}
+                                                </p>
+                                            </div>
                                         </div>
 
-                                        <div>
-                                            <p className="text-purple-400 text-xs font-semibold uppercase mb-2">
-                                                Backend
-                                            </p>
+                                        {/* Tecnologías */}
+                                        <ul
+                                            aria-label={`Tecnologías de ${project.title}`}
+                                            className="flex flex-wrap gap-2 mb-6"
+                                        >
+                                            {project.technologies.map((tech) => (
+                                                <li
+                                                    key={tech}
+                                                    className="px-2.5 py-1.5 text-xs rounded-lg bg-white/5 border border-white/10 text-gray-300"
+                                                >
+                                                    {tech}
+                                                </li>
+                                            ))}
+                                        </ul>
 
-                                            <p className="text-gray-400 text-sm">
-                                                {project.backend}
-                                            </p>
-                                        </div>
+                                        {/* Enlaces disponibles */}
+                                        {(project.github || project.demo) && (
+                                            <div className="flex flex-wrap gap-3 pt-5 border-t border-white/10">
+
+                                                {project.github && (
+                                                    <a
+                                                        href={project.github}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        aria-label={`Ver código de ${project.title} en GitHub`}
+                                                        className="flex-1 text-center px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-sm font-medium transition-colors"
+                                                    >
+                                                        <Code2
+                                                            size={16}
+                                                            className="inline mr-2"
+                                                            aria-hidden="true"
+                                                        />
+                                                        GitHub
+                                                    </a>
+                                                )}
+
+                                                {project.demo && (
+                                                    <a
+                                                        href={project.demo}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        aria-label={`Ver demostración de ${project.title}`}
+                                                        className="flex-1 text-center px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium transition-colors"
+                                                    >
+                                                        <ExternalLink
+                                                            size={16}
+                                                            className="inline mr-2"
+                                                            aria-hidden="true"
+                                                        />
+                                                        Ver demo
+                                                    </a>
+                                                )}
+                                            </div>
+                                        )}
                                     </div>
-
-                                    {/* Tecnologías */}
-                                    <ul
-                                        aria-label={`Tecnologías de ${project.title}`}
-                                        className="flex flex-wrap gap-2 mb-6"
-                                    >
-                                        {project.technologies.map((tech) => (
-                                            <li
-                                                key={tech}
-                                                className="px-2.5 py-1.5 text-xs rounded-lg bg-white/5 border border-white/10 text-gray-300"
-                                            >
-                                                {tech}
-                                            </li>
-                                        ))}
-                                    </ul>
-
-                                    {/* Enlaces */}
-                                    {(project.github || project.demo) && (
-                                        <div className="flex flex-wrap gap-3 pt-5 border-t border-white/10">
-                                            {project.github && (
-                                                <a
-                                                    href={project.github}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    aria-label={`Ver código de ${project.title} en GitHub`}
-                                                    className="flex-1 text-center px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-sm font-medium transition-colors"
-                                                >
-                                                    <Code2
-                                                        size={16}
-                                                        className="inline mr-2"
-                                                        aria-hidden="true"
-                                                    />
-                                                    GitHub
-                                                </a>
-                                            )}
-
-                                            {project.demo && (
-                                                <a
-                                                    href={project.demo}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    aria-label={`Ver demostración de ${project.title}`}
-                                                    className="flex-1 text-center px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium transition-colors"
-                                                >
-                                                    <ExternalLink
-                                                        size={16}
-                                                        className="inline mr-2"
-                                                        aria-hidden="true"
-                                                    />
-                                                    Ver demo
-                                                </a>
-                                            )}
-                                        </div>
-                                    )}
-                                </div>
-                            </motion.article>
-                        ))}
-                    </div>
-                </motion.div>
+                                </motion.article>
+                            ))}
+                        </div>
+                    </motion.div>
+                )}
             </div>
-              <div
+
+            {/* Separador */}
+            <div
                 aria-hidden="true"
                 className="absolute bottom-0 left-0 w-full h-px bg-white/10"
             />
