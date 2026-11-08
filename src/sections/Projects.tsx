@@ -571,7 +571,7 @@ function Projects() {
                                                             className="inline mr-2"
                                                             aria-hidden="true"
                                                         />
-                                                        Ver demo
+                                                        Ver proyecto
                                                     </a>
                                                 )}
                                             </div>
