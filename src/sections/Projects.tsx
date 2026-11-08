@@ -23,24 +23,27 @@ import Badge from '../components/ui/Badge';
 const projects = [
     {
         id: 1,
-        title: 'Sistema de reservas',
+        title: 'Savora - Sistema de reservas',
         category: 'Full Stack',
         description:
-            'Aplicación web para gestionar reservas, consultar disponibilidad, modificar y cancelar registros mediante una API REST.',
+            'Aplicación web full stack para la gestión de reservas en restaurantes. Permite consultar restaurantes, verificar disponibilidad, crear reservas, modificarlas y cancelarlas mediante una API REST.',
         technologies: [
             'React',
             'TypeScript',
             'Java',
             'Spring Boot',
             'PostgreSQL',
+            'Tailwind CSS',
+            'Vercel',
+            'Render',
         ],
         frontend:
-            'Interfaces, formularios de reserva y consulta de disponibilidad.',
+            'Interfaz responsive desarrollada con React y TypeScript. Incluye consulta de restaurantes, disponibilidad, formularios de reserva y gestión de reservas.',
         backend:
-            'API REST, endpoints, validaciones y lógica de negocio.',
-        image: '/projects/sistema-reservas.png',
-        github: '',
-        demo: '',
+            'API REST desarrollada con Java y Spring Boot, con lógica de negocio para asignación de mesas, validación de disponibilidad y gestión de reservas mediante PostgreSQL.',
+        image: '/projects/savora-home.png',
+        github: 'https://github.com/Manuelvargas52/savora',
+        demo: 'https://savora-blush.vercel.app/',
     },
     {
         id: 2,
@@ -85,16 +88,14 @@ function Projects() {
     const [inputValue, setInputValue] = useState('');
     const [activeFilter, setActiveFilter] = useState('Todos');
 
-    // Obtener únicamente las categorías disponibles.
     const availableFilters = getProjectFilters();
 
-    // Filtrar proyectos según la categoría seleccionada.
     const filteredProjects =
         activeFilter === 'Todos'
             ? projects
             : projects.filter(
-                (project) => project.category === activeFilter
-            );
+                  (project) => project.category === activeFilter
+              );
 
     return (
         <section
@@ -110,9 +111,7 @@ function Projects() {
 
             <div className="relative z-10 max-w-7xl mx-auto">
 
-                {/* ====================================== */}
                 {/* ENCABEZADO */}
-                {/* ====================================== */}
 
                 <motion.div
                     initial={{ opacity: 0, y: 25 }}
@@ -142,11 +141,7 @@ function Projects() {
                     </p>
                 </motion.div>
 
-                {/* ====================================== */}
                 {/* DESIGN SYSTEM SHOWCASE */}
-                {/* Proyecto destacado independiente */}
-                {/* de los filtros del catálogo. */}
-                {/* ====================================== */}
 
                 <motion.article
                     aria-labelledby="design-system-title"
@@ -156,7 +151,6 @@ function Projects() {
                     transition={{ duration: 0.7 }}
                     className="grid lg:grid-cols-2 gap-8 p-6 md:p-10 rounded-3xl bg-[#101522] border border-white/10 hover:border-blue-500/40 transition-all"
                 >
-                    {/* Información del proyecto */}
                     <div className="flex flex-col justify-center">
 
                         <div className="flex items-center gap-2 mb-6 flex-wrap">
@@ -225,7 +219,8 @@ function Projects() {
                         </div>
                     </div>
 
-                    {/* Playground interactivo */}
+                    {/* PLAYGROUND INTERACTIVO */}
+
                     <div
                         aria-label="Demostración interactiva de componentes"
                         className="rounded-2xl bg-[#080d18] border border-white/10 p-5 md:p-7"
@@ -250,7 +245,8 @@ function Projects() {
 
                         <div className="space-y-7">
 
-                            {/* Botones */}
+                            {/* BOTONES */}
+
                             <div>
                                 <h4 className="text-xs text-gray-500 uppercase tracking-wider mb-3">
                                     Buttons
@@ -298,7 +294,8 @@ function Projects() {
                                 </p>
                             </div>
 
-                            {/* Campo de texto */}
+                            {/* INPUT */}
+
                             <div>
                                 <h4 className="text-xs text-gray-500 uppercase tracking-wider mb-3">
                                     Input
@@ -320,7 +317,8 @@ function Projects() {
                                 />
                             </div>
 
-                            {/* Badges */}
+                            {/* BADGES */}
+
                             <div>
                                 <h4 className="text-xs text-gray-500 uppercase tracking-wider mb-3">
                                     Status badges
@@ -345,7 +343,8 @@ function Projects() {
                                 </div>
                             </div>
 
-                            {/* Footer del playground */}
+                            {/* FOOTER */}
+
                             <div className="pt-5 border-t border-white/10 flex items-center justify-between">
                                 <div className="flex items-center gap-2 text-gray-500 text-xs">
                                     <Sparkles
@@ -364,10 +363,7 @@ function Projects() {
                     </div>
                 </motion.article>
 
-                {/* ====================================== */}
-                {/* CATÁLOGO DE OTROS PROYECTOS */}
-                {/* Solo aparece si existen proyectos. */}
-                {/* ====================================== */}
+                {/* CATÁLOGO DE PROYECTOS */}
 
                 {projects.length > 0 && (
                     <motion.div
@@ -392,9 +388,7 @@ function Projects() {
                             </p>
                         </div>
 
-                        {/* ====================================== */}
-                        {/* FILTROS DINÁMICOS */}
-                        {/* ====================================== */}
+                        {/* FILTROS */}
 
                         {availableFilters.length > 1 && (
                             <div
@@ -414,9 +408,10 @@ function Projects() {
                                             className={`
                                                 px-5 py-2.5 rounded-full text-sm font-medium
                                                 border transition-all duration-300
-                                                ${isActive
-                                                    ? 'bg-blue-600 border-blue-500 text-white shadow-lg shadow-blue-600/20'
-                                                    : 'bg-white/5 border-white/10 text-gray-400 hover:text-white hover:border-blue-500/50 hover:bg-blue-500/10'
+                                                ${
+                                                    isActive
+                                                        ? 'bg-blue-600 border-blue-500 text-white shadow-lg shadow-blue-600/20'
+                                                        : 'bg-white/5 border-white/10 text-gray-400 hover:text-white hover:border-blue-500/50 hover:bg-blue-500/10'
                                                 }
                                             `}
                                         >
@@ -427,7 +422,8 @@ function Projects() {
                             </div>
                         )}
 
-                        {/* Contador de resultados */}
+                        {/* CONTADOR */}
+
                         <div
                             className="flex items-center justify-between mb-6"
                             aria-live="polite"
@@ -446,9 +442,7 @@ function Projects() {
                             </span>
                         </div>
 
-                        {/* ====================================== */}
-                        {/* TARJETAS DE PROYECTOS */}
-                        {/* ====================================== */}
+                        {/* TARJETAS */}
 
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
@@ -465,13 +459,14 @@ function Projects() {
                                     }}
                                     className="overflow-hidden rounded-2xl bg-[#101522] border border-white/10 hover:border-blue-500/40 transition-all"
                                 >
-                                    {/* Imagen del proyecto */}
+                                    {/* IMAGEN DEL PROYECTO */}
+
                                     <div className="relative h-48 bg-gradient-to-br from-blue-950 via-[#111827] to-purple-950">
                                         {project.image && (
                                             <img
                                                 src={project.image}
                                                 alt={`Vista previa de ${project.title}`}
-                                                className="w-full h-full object-cover"
+                                                className="w-full h-full object-cover object-center"
                                                 loading="lazy"
                                                 onError={(event) => {
                                                     event.currentTarget.style.display =
@@ -487,7 +482,8 @@ function Projects() {
                                         </div>
                                     </div>
 
-                                    {/* Información del proyecto */}
+                                    {/* INFORMACIÓN DEL PROYECTO */}
+
                                     <div className="p-6">
                                         <h4
                                             id={`project-title-${project.id}`}
@@ -500,7 +496,8 @@ function Projects() {
                                             {project.description}
                                         </p>
 
-                                        {/* Frontend y Backend */}
+                                        {/* FRONTEND Y BACKEND */}
+
                                         <div className="space-y-4 mb-6">
                                             <div>
                                                 <p className="text-blue-400 text-xs font-semibold uppercase mb-2">
@@ -523,7 +520,8 @@ function Projects() {
                                             </div>
                                         </div>
 
-                                        {/* Tecnologías */}
+                                        {/* TECNOLOGÍAS */}
+
                                         <ul
                                             aria-label={`Tecnologías de ${project.title}`}
                                             className="flex flex-wrap gap-2 mb-6"
@@ -538,7 +536,8 @@ function Projects() {
                                             ))}
                                         </ul>
 
-                                        {/* Enlaces disponibles */}
+                                        {/* ENLACES */}
+
                                         {(project.github || project.demo) && (
                                             <div className="flex flex-wrap gap-3 pt-5 border-t border-white/10">
 
@@ -585,7 +584,8 @@ function Projects() {
                 )}
             </div>
 
-            {/* Separador */}
+            {/* SEPARADOR */}
+
             <div
                 aria-hidden="true"
                 className="absolute bottom-0 left-0 w-full h-px bg-white/10"
