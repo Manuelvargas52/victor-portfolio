@@ -104,7 +104,7 @@ http://localhost:5173/
 victor-portfolio/
 ├── public/
 │   ├── projects/
-│   ├── Victor_Manuel_Vargas_CV.pdf
+│   ├── Victor_Manuel_Vargas_Software_Engineer_CV.pdf
 │   └── favicon.svg
 ├── src/
 │   ├── components/

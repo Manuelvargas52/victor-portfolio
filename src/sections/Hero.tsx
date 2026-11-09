@@ -13,16 +13,26 @@ const technologies = [
     'Stencil',
     'TypeScript',
     'JavaScript',
+    'HTML5',
+    'CSS3',
     'Java',
     'Spring Boot',
     'Kotlin',
-    'PHP',
     'React Native',
+    'PHP',
     'Python',
     'SQL',
     'MySQL',
+    'MariaDB',
     'PostgreSQL',
+    'Oracle SQL',
     'Power BI',
+    'Excel',
+    'Jest',
+    'GitHub Actions',
+    'NPM',
+    'Maven',
+    'JFrog',
     'Git',
 ];
 
@@ -89,12 +99,15 @@ function Hero() {
                     </h2>
 
                     <p className="text-gray-400 text-lg leading-relaxed mt-6 max-w-xl">
-                        Ingeniero de Sistemas con experiencia en desarrollo de software,
-                        construcción de aplicaciones web, integración de servicios backend
-                        y gestión de bases de datos. He trabajado con tecnologías como
-                        Angular, React, Java, Spring Boot, Python y SQL, participando
-                        en soluciones que abarcan desde la interfaz de usuario hasta
-                        el procesamiento y gestión de información.
+                        Ingeniero de Sistemas especializado en desarrollo de
+                        software, arquitectura frontend y construcción de
+                        Design Systems. Experiencia con Angular, React,
+                        Stencil, TypeScript y JavaScript, desarrollando
+                        componentes reutilizables para plataformas web y
+                        móviles. Conocimientos en backend con Java y
+                        Spring Boot, APIs REST, bases de datos SQL,
+                        automatización CI/CD y análisis de datos con Python
+                        y Power BI.
                     </p>
 
                     <div className="flex flex-wrap gap-4 mt-10">
@@ -107,8 +120,8 @@ function Hero() {
                         </a>
 
                         <a
-                            href="/Victor_Manuel_Vargas_CV.pdf"
-                            download="Victor_Manuel_Vargas_CV.pdf"
+                            href="/Victor_Manuel_Vargas_Software_Engineer_CV.pdf"
+                            download="Victor_Manuel_Vargas_Software_Engineer_CV.pdf"
                             className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-medium transition-all"
                         >
                             <Download size={19} aria-hidden="true" />
@@ -136,7 +149,11 @@ function Hero() {
 
                 {/* Decorative code illustration */}
                 <motion.div
-                    initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.8 }}
+                    initial={
+                        shouldReduceMotion
+                            ? false
+                            : { opacity: 0, scale: 0.8 }
+                    }
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{
                         duration: shouldReduceMotion ? 0 : 1,
@@ -146,18 +163,25 @@ function Hero() {
                 >
                     <div className="relative w-80 h-80">
                         <div
-                            className={`absolute inset-0 rounded-full border border-blue-500/30 ${shouldReduceMotion ? '' : 'animate-[spin_20s_linear_infinite]'
+                            className={`absolute inset-0 rounded-full border border-blue-500/30 ${shouldReduceMotion
+                                    ? ''
+                                    : 'animate-[spin_20s_linear_infinite]'
                                 }`}
                         />
 
                         <div
-                            className={`absolute inset-8 rounded-full border border-purple-500/30 ${shouldReduceMotion ? '' : 'animate-[spin_15s_linear_infinite_reverse]'
+                            className={`absolute inset-8 rounded-full border border-purple-500/30 ${shouldReduceMotion
+                                    ? ''
+                                    : 'animate-[spin_15s_linear_infinite_reverse]'
                                 }`}
                         />
 
                         <div className="absolute inset-16 rounded-full bg-gradient-to-br from-blue-600/20 to-purple-600/20 backdrop-blur-xl border border-white/10 flex items-center justify-center">
                             <div className="text-center">
-                                <Code2 size={80} className="text-blue-400 mx-auto mb-5" />
+                                <Code2
+                                    size={80}
+                                    className="text-blue-400 mx-auto mb-5"
+                                />
 
                                 <p className="text-2xl font-bold">
                                     Clean Code
@@ -170,12 +194,16 @@ function Hero() {
                         </div>
 
                         <div className="absolute top-5 -right-5 p-4 bg-[#151b2b] border border-white/10 rounded-2xl">
-                            <Terminal className="text-blue-400" size={28} />
+                            <Terminal
+                                className="text-blue-400"
+                                size={28}
+                            />
                         </div>
                     </div>
                 </motion.div>
             </div>
-              <div
+
+            <div
                 aria-hidden="true"
                 className="absolute bottom-0 left-0 w-full h-px bg-white/10"
             />

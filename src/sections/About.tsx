@@ -9,12 +9,14 @@ import {
     Workflow,
     Image,
     Smartphone,
+    ShieldCheck,
+    Award,
 } from 'lucide-react';
 
 const stats = [
     {
         value: '+50',
-        label: 'Componentes web',
+        label: 'Componentes web desarrollados',
         icon: Component,
     },
     {
@@ -23,7 +25,7 @@ const stats = [
         icon: Image,
     },
     {
-        value: '+10',
+        value: '+15',
         label: 'Equipos adoptaron el Design System',
         icon: Users,
     },
@@ -37,6 +39,11 @@ const stats = [
         label: 'Componentes React Native',
         icon: Smartphone,
     },
+    {
+        value: '~90%',
+        label: 'Cobertura de código en pruebas',
+        icon: ShieldCheck,
+    },
 ];
 
 const strengths = [
@@ -44,25 +51,25 @@ const strengths = [
         icon: Code2,
         title: 'Desarrollo de software',
         description:
-            'Construcción de aplicaciones y soluciones tecnológicas utilizando diferentes lenguajes, frameworks y buenas prácticas.',
+            'Construcción de aplicaciones web y funcionalidades utilizando Angular, React, TypeScript, JavaScript y buenas prácticas de desarrollo.',
     },
     {
         icon: Workflow,
-        title: 'Integración backend',
+        title: 'Integración y automatización',
         description:
-            'Integración entre frontend y backend, consumo de servicios y conexión de aplicaciones con fuentes de datos.',
+            'Integración de frontend con servicios backend y APIs REST. Implementación de flujos CI/CD con GitHub Actions para validar, compilar y publicar paquetes.',
     },
     {
         icon: Database,
         title: 'Bases de datos y analítica',
         description:
-            'Consultas SQL, gestión de bases de datos, automatización con Python y visualización de información.',
+            'Diseño y administración de bases de datos relacionales, consultas SQL, automatización con Python y análisis de información mediante Power BI.',
     },
     {
         icon: Layers3,
-        title: 'Arquitectura y componentes',
+        title: 'Arquitectura y Design Systems',
         description:
-            'Creación de componentes reutilizables, organización de interfaces y aplicación de buenas prácticas de desarrollo y mantenimiento.',
+            'Diseño y evolución de librerías de componentes reutilizables con Stencil y Atomic Design para plataformas web y móviles, priorizando accesibilidad, calidad y mantenibilidad.',
     },
 ];
 
@@ -104,32 +111,45 @@ function About() {
                     </h2>
 
                     <p className="text-gray-400 text-lg leading-relaxed mt-7">
-                        Soy Ingeniero de Sistemas con experiencia en desarrollo de software,
-                        enfocado en la construcción de aplicaciones, integración de servicios
-                        y soluciones tecnológicas orientadas a las necesidades del negocio.
-                        He trabajado principalmente con Angular, React, TypeScript, Java
-                        y Spring Boot.
+                        Soy Ingeniero de Sistemas con experiencia en desarrollo
+                        de software, especializado en la construcción de
+                        aplicaciones web y arquitecturas frontend utilizando
+                        Angular, React, TypeScript y JavaScript. He participado
+                        en la evolución de soluciones tecnológicas y Design
+                        Systems utilizados por diferentes equipos de desarrollo.
                     </p>
 
                     <p className="text-gray-400 text-lg leading-relaxed mt-5">
-                        Mi experiencia abarca el desarrollo frontend, consumo e integración
-                        de APIs REST, manejo de bases de datos relacionales y automatización
-                        de procesos utilizando Python y SQL. También he participado en
-                        proyectos de análisis y visualización de datos con Power BI.
+                        En Banco Davivienda contribuí al diseño y evolución de
+                        un Design System reconocido con un iF Design Award,
+                        desarrollando más de 50 componentes web con Stencil y
+                        Atomic Design, adoptados por más de 15 equipos internos.
+                        También extendí su ecosistema a plataformas móviles
+                        mediante componentes en Kotlin y React Native.
                     </p>
 
                     <p className="text-gray-400 text-lg leading-relaxed mt-5">
-                        Adicionalmente, cuento con experiencia en la creación y mantenimiento
-                        de Design Systems y librerías de componentes reutilizables para
-                        plataformas web y móviles, aplicando principios de Atomic Design,
-                        pruebas unitarias, accesibilidad y buenas prácticas de desarrollo.
+                        Mi experiencia también incluye integración de servicios
+                        backend con Java y Spring Boot, consumo de APIs REST,
+                        gestión de bases de datos SQL y automatización de
+                        procesos con Python. He trabajado en pruebas unitarias,
+                        alcanzando aproximadamente un 90% de cobertura de
+                        código, así como en automatización CI/CD con GitHub
+                        Actions.
+                    </p>
+
+                    <p className="text-gray-400 text-lg leading-relaxed mt-5">
+                        Complemento mi perfil con experiencia en análisis y
+                        visualización de datos mediante Power BI y Excel,
+                        conectando las capacidades de desarrollo de software
+                        con las necesidades del negocio.
                     </p>
                 </motion.div>
 
                 {/* Estadísticas */}
                 <div
                     aria-label="Indicadores de experiencia profesional"
-                    className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 mb-24"
+                    className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5 mb-24"
                 >
                     {stats.map((stat, index) => {
                         const Icon = stat.icon;
@@ -163,6 +183,37 @@ function About() {
                         );
                     })}
                 </div>
+
+                {/* Reconocimiento */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="flex flex-col sm:flex-row items-start sm:items-center gap-5 p-7 mb-24 rounded-2xl bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20"
+                >
+                    <div className="w-14 h-14 shrink-0 flex items-center justify-center rounded-xl bg-blue-500/10">
+                        <Award
+                            size={30}
+                            className="text-blue-400"
+                            aria-hidden="true"
+                        />
+                    </div>
+
+                    <div>
+                        <p className="text-blue-400 text-sm font-semibold uppercase tracking-wider">
+                            Reconocimiento profesional
+                        </p>
+                        <h3 className="text-xl font-bold mt-1">
+                            iF Design Award
+                        </h3>
+                        <p className="text-gray-400 text-sm mt-2 leading-relaxed">
+                            Participación en el desarrollo del Design System
+                            de Banco Davivienda, proyecto reconocido con este
+                            premio internacional de diseño.
+                        </p>
+                    </div>
+                </motion.div>
 
                 {/* Fortalezas */}
                 <div>
@@ -220,6 +271,7 @@ function About() {
                     </div>
                 </div>
             </div>
+
             <div
                 aria-hidden="true"
                 className="absolute bottom-0 left-0 w-full h-px bg-white/10"

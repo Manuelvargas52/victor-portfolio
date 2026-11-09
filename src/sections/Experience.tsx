@@ -14,17 +14,17 @@ const experiences = [
         role: 'Profesional II – Frontend Developer',
         period: 'Octubre 2024 – Octubre 2026',
         description:
-            'Desarrollo de soluciones frontend y aplicaciones web, integración de funcionalidades y participación en la evolución de componentes reutilizables para diferentes plataformas.',
+            'Diseño y evolución de soluciones frontend y Design Systems para los ecosistemas web y móvil de Banco Davivienda, con enfoque en arquitectura reutilizable, calidad de software y automatización.',
         achievements: [
-            'Desarrollo de funcionalidades e interfaces web utilizando Angular, React, TypeScript y JavaScript.',
-            'Integración de aplicaciones frontend con servicios backend y APIs.',
-            'Desarrollo y mantenimiento de funcionalidades e interfaces web para diferentes plataformas.',
-            'Desarrollo y mantenimiento de una librería web con más de 50 componentes utilizando Stencil.',
-            'Contribución a un Design System adoptado por más de 10 equipos internos.',
-            'Desarrollo de más de 20 componentes nativos para Kotlin y más de 10 para React Native.',
-            'Participación en el desarrollo y mantenimiento de una librería corporativa con más de 400 iconos para entornos web y móviles.',
-            'Implementación de pruebas unitarias, accesibilidad y diseño responsive.',
-            'Publicación y gestión de paquetes mediante NPM, Maven y JFrog.',
+            'Diseñé y definí la arquitectura y los estándares técnicos del Design System de Banco Davivienda, proyecto reconocido con un iF Design Award.',
+            'Desarrollé más de 50 componentes web con Stencil y Atomic Design, adoptados por más de 15 equipos internos y utilizados en el sitio web del banco.',
+            'Desarrollé componentes web responsivos y accesibles (A11Y) e implementé pruebas unitarias con Jest, alcanzando aproximadamente un 90% de cobertura de código.',
+            'Extendí el Design System al ecosistema móvil mediante más de 20 componentes nativos en Kotlin y más de 10 componentes en React Native.',
+            'Diseñé y mantuve una librería corporativa de más de 400 iconos SVG para aplicaciones web y sus equivalentes XML/Kotlin para aplicaciones móviles.',
+            'Desarrollé funcionalidades y flujos de interfaz con Angular, React y JavaScript, aplicando criterios de reutilización, modularidad y estandarización.',
+            'Publiqué y gestioné tres librerías mediante NPM: Web Components, React Native e iconografía, incorporando documentación técnica y versionamiento semántico.',
+            'Implementé automatizaciones con GitHub Actions para validar, compilar componentes y publicar paquetes NPM.',
+            'Participé en revisiones de código y decisiones técnicas, contribuyendo a los estándares de desarrollo y mantenibilidad.',
         ],
         technologies: [
             'Angular',
@@ -34,6 +34,8 @@ const experiences = [
             'JavaScript',
             'Kotlin',
             'React Native',
+            'Jest',
+            'GitHub Actions',
             'NPM',
             'Maven',
             'JFrog',
@@ -42,15 +44,14 @@ const experiences = [
     },
     {
         company: 'Banco Davivienda',
-        role: 'Practicante de desarrollo de software',
+        role: 'Practicante de Desarrollo de Software',
         period: 'Enero 2024 – Julio 2024',
         description:
             'Participación en el desarrollo de aplicaciones y formularios web, apoyando la integración entre frontend y backend.',
         achievements: [
-            'Desarrollo de formularios y componentes utilizando Angular.',
-            'Implementación de interfaces con HTML, CSS y JavaScript.',
-            'Apoyo en proyectos backend desarrollados con Java y Spring Boot.',
-            'Integración y comunicación entre servicios frontend y backend.',
+            'Desarrollé más de 15 formularios, componentes y flujos funcionales utilizando Angular, HTML, CSS y JavaScript durante seis meses.',
+            'Integré aplicaciones frontend con servicios backend desarrollados en Java y Spring Boot, consumiendo APIs REST de más de 10 endpoints y módulos.',
+            'Implementé funcionalidades y correcciones en proyectos internos, colaborando con equipos de desarrollo bajo metodología Scrum.',
         ],
         technologies: [
             'Angular',
@@ -59,6 +60,7 @@ const experiences = [
             'JavaScript',
             'Java',
             'Spring Boot',
+            'APIs REST',
         ],
         icon: Code2,
     },
@@ -69,9 +71,9 @@ const experiences = [
         description:
             'Análisis, transformación y visualización de datos para generar indicadores de negocio y apoyar la toma de decisiones.',
         achievements: [
-            'Construcción y mantenimiento de 10 dashboards e informes de indicadores de negocio en Power BI, utilizados semanalmente por el equipo directivo.',
-            'Extracción y transformación de datos mediante consultas SQL para alimentar dashboards y análisis de negocio.',
-            'Automatización de reportes periódicos, ahorrando entre 6 y 10 horas semanales de trabajo manual.',
+            'Construí y mantuve 10 dashboards e informes de indicadores de negocio en Power BI, utilizados semanalmente por el equipo directivo.',
+            'Extraje y transformé información mediante consultas SQL para alimentar dashboards y análisis de negocio.',
+            'Automaticé la generación de reportes periódicos, reduciendo entre 6 y 10 horas semanales de trabajo manual.',
         ],
         technologies: [
             'Python',
@@ -88,9 +90,9 @@ const experiences = [
         description:
             'Administración de bases de datos y automatización de procesos para dar soporte a las operaciones de diferentes áreas del negocio.',
         achievements: [
-            'Diseño y administración de bases de datos MySQL que daban soporte a entre 3 y 5 áreas del negocio.',
-            'Desarrollo de consultas SQL y procedimientos almacenados para apoyar los procesos operativos.',
-            'Automatización de procesos mediante Python sobre bases de datos relacionales y no relacionales, reduciendo tareas manuales repetitivas.',
+            'Diseñé y administré bases de datos relacionales en MySQL para soportar procesos de entre 3 y 5 áreas del negocio.',
+            'Desarrollé consultas SQL y procedimientos almacenados para respaldar procesos operativos y gestionar la integridad y disponibilidad de la información.',
+            'Automaticé procesos operativos mediante Python y bases de datos relacionales y no relacionales, reduciendo tareas manuales repetitivas.',
         ],
         technologies: [
             'MySQL',
@@ -142,13 +144,13 @@ function Experience() {
 
                     <p className="text-gray-400 text-lg mt-6 leading-relaxed">
                         Mi recorrido profesional combina desarrollo de software,
-                        construcción de arquitecturas reutilizables y análisis de datos.
+                        construcción de arquitecturas reutilizables, automatización
+                        de procesos y análisis de datos.
                     </p>
                 </motion.div>
 
                 {/* Línea de tiempo profesional */}
                 <div className="relative">
-
                     <div
                         aria-hidden="true"
                         className="absolute left-4 md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500 via-purple-500 to-transparent"
@@ -178,7 +180,10 @@ function Experience() {
                                         aria-hidden="true"
                                         className="absolute left-0 md:left-4 top-7 w-9 h-9 rounded-xl bg-[#151b2b] border border-blue-500/50 flex items-center justify-center"
                                     >
-                                        <Icon size={18} className="text-blue-400" />
+                                        <Icon
+                                            size={18}
+                                            className="text-blue-400"
+                                        />
                                     </div>
 
                                     <article className="p-7 md:p-9 rounded-2xl bg-[#101522] border border-white/10 hover:border-blue-500/40 transition-all">
@@ -216,21 +221,25 @@ function Experience() {
                                             </h4>
 
                                             <ul className="space-y-3">
-                                                {experience.achievements.map((achievement) => (
-                                                    <li
-                                                        key={achievement}
-                                                        className="flex gap-3 text-gray-400 text-sm leading-relaxed"
-                                                    >
-                                                        <span
-                                                            aria-hidden="true"
-                                                            className="text-blue-400 mt-1"
+                                                {experience.achievements.map(
+                                                    (achievement) => (
+                                                        <li
+                                                            key={achievement}
+                                                            className="flex gap-3 text-gray-400 text-sm leading-relaxed"
                                                         >
-                                                            ▹
-                                                        </span>
+                                                            <span
+                                                                aria-hidden="true"
+                                                                className="text-blue-400 mt-1"
+                                                            >
+                                                                ▹
+                                                            </span>
 
-                                                        <span>{achievement}</span>
-                                                    </li>
-                                                ))}
+                                                            <span>
+                                                                {achievement}
+                                                            </span>
+                                                        </li>
+                                                    )
+                                                )}
                                             </ul>
                                         </div>
 
@@ -246,14 +255,16 @@ function Experience() {
                                             </h4>
 
                                             <ul className="flex flex-wrap gap-2">
-                                                {experience.technologies.map((technology) => (
-                                                    <li
-                                                        key={technology}
-                                                        className="px-3 py-2 text-xs rounded-lg bg-white/5 border border-white/10 text-gray-300"
-                                                    >
-                                                        {technology}
-                                                    </li>
-                                                ))}
+                                                {experience.technologies.map(
+                                                    (technology) => (
+                                                        <li
+                                                            key={technology}
+                                                            className="px-3 py-2 text-xs rounded-lg bg-white/5 border border-white/10 text-gray-300"
+                                                        >
+                                                            {technology}
+                                                        </li>
+                                                    )
+                                                )}
                                             </ul>
                                         </div>
                                     </article>
@@ -263,7 +274,8 @@ function Experience() {
                     </ol>
                 </div>
             </div>
-              <div
+
+            <div
                 aria-hidden="true"
                 className="absolute bottom-0 left-0 w-full h-px bg-white/10"
             />

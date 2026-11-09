@@ -1,24 +1,61 @@
 
+import { useRef } from 'react';
 import { motion } from 'motion/react';
+
 import {
     GraduationCap,
     Award,
     CalendarDays,
     BookOpen,
+    ExternalLink,
+    ChevronLeft,
+    ChevronRight,
+    CheckCircle2,
 } from 'lucide-react';
 
-const education = [
+// ======================================================
+// TIPOS
+// ======================================================
+
+interface EducationItem {
+    institution: string;
+    degree: string;
+    period: string;
+    dateTime: string;
+    description: string;
+    icon: typeof GraduationCap;
+}
+
+interface Certification {
+    name: string;
+    platform: string;
+    date: string;
+    credentialId: string;
+    url: string;
+    trainer?: string;
+}
+
+// ======================================================
+// FORMACIÓN ACADÉMICA
+// ======================================================
+
+const education: EducationItem[] = [
     {
         institution: 'Fundación Universitaria Konrad Lorenz',
         degree: 'Ingeniería de Sistemas',
         period: 'Graduado en 2024',
+        dateTime: '2024',
         description:
             'Formación profesional en ingeniería de software, desarrollo de aplicaciones, bases de datos y solución de problemas tecnológicos.',
         icon: GraduationCap,
     },
 ];
 
-const certifications = [
+// ======================================================
+// CERTIFICACIONES
+// ======================================================
+
+const certifications: Certification[] = [
     {
         name: 'Curso de Introducción a Unity: Interfaz',
         platform: 'Platzi',
@@ -58,20 +95,54 @@ const certifications = [
     },
 ];
 
+// ======================================================
+// COMPONENTE PRINCIPAL
+// ======================================================
+
 function Education() {
+    const carouselRef = useRef<HTMLDivElement>(null);
+
+    // ==================================================
+    // NAVEGACIÓN DEL CARRUSEL
+    // ==================================================
+
+    const scrollCarousel = (direction: 'left' | 'right') => {
+        const container = carouselRef.current;
+
+        if (!container) return;
+
+        const scrollAmount = container.clientWidth * 0.85;
+
+        container.scrollBy({
+            left: direction === 'left' ? -scrollAmount : scrollAmount,
+            behavior: 'smooth',
+        });
+    };
+
     return (
         <section
             id="formacion"
             aria-labelledby="education-title"
-            className="relative py-28 px-6 overflow-hidden"
+            className="relative overflow-hidden px-6 py-28"
         >
+            {/* FONDO DECORATIVO */}
+
             <div
                 aria-hidden="true"
-                className="absolute bottom-10 left-0 w-96 h-96 bg-blue-600/10 rounded-full blur-[140px]"
+                className="absolute bottom-10 left-0 h-96 w-96 rounded-full bg-blue-600/10 blur-[140px]"
             />
 
-            <div className="relative z-10 max-w-7xl mx-auto">
-                {/* Encabezado */}
+            <div
+                aria-hidden="true"
+                className="absolute right-0 top-40 h-80 w-80 rounded-full bg-purple-600/10 blur-[140px]"
+            />
+
+            <div className="relative z-10 mx-auto max-w-7xl">
+
+                {/* ==================================================
+                    ENCABEZADO
+                ================================================== */}
+
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -79,25 +150,32 @@ function Education() {
                     transition={{ duration: 0.6 }}
                     className="mb-16"
                 >
-                    <p className="text-blue-400 text-sm font-semibold tracking-widest uppercase mb-4">
+                    <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-blue-400">
                         Mi formación
                     </p>
 
                     <h2
                         id="education-title"
-                        className="text-4xl md:text-5xl font-bold tracking-tight mb-6"
+                        className="mb-6 text-4xl font-bold tracking-tight md:text-5xl"
                     >
                         Formación académica.
                     </h2>
 
-                    <p className="text-gray-400 max-w-2xl leading-relaxed">
+                    <p className="max-w-2xl leading-relaxed text-gray-400">
                         Mi formación académica y aprendizaje continuo respaldan
-                        mi trayectoria en ingeniería de software.
+                        mi trayectoria en ingeniería de software y desarrollo
+                        de soluciones tecnológicas.
                     </p>
                 </motion.div>
 
-                {/* Formación académica y aprendizaje continuo */}
-                <div className="grid lg:grid-cols-2 gap-8">
+                {/* ==================================================
+                    FORMACIÓN ACADÉMICA Y APRENDIZAJE CONTINUO
+                ================================================== */}
+
+                <div className="grid gap-8 lg:grid-cols-2">
+
+                    {/* FORMACIÓN ACADÉMICA */}
+
                     {education.map((item, index) => {
                         const Icon = item.icon;
 
@@ -111,136 +189,176 @@ function Education() {
                                     duration: 0.5,
                                     delay: index * 0.15,
                                 }}
-                                className="p-8 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-blue-500/30 transition-colors"
+                                className="rounded-2xl border border-white/10 bg-white/[0.03] p-8 transition-colors hover:border-blue-500/30"
                             >
-                                <div className="flex items-center justify-between gap-4 mb-8">
-                                    <div className="p-3 rounded-xl bg-blue-500/10 text-blue-400">
-                                        <Icon size={28} aria-hidden="true" />
+                                <div className="mb-8 flex items-center justify-between gap-4">
+                                    <div className="rounded-xl bg-blue-500/10 p-3 text-blue-400">
+                                        <Icon
+                                            size={28}
+                                            aria-hidden="true"
+                                        />
                                     </div>
 
                                     <span className="flex items-center gap-2 text-sm text-gray-400">
-                                        <CalendarDays size={16} aria-hidden="true" />
-                                        <time dateTime="2024">
+                                        <CalendarDays
+                                            size={16}
+                                            aria-hidden="true"
+                                        />
+
+                                        <time dateTime={item.dateTime}>
                                             {item.period}
                                         </time>
                                     </span>
                                 </div>
 
-                                <h3 className="text-2xl font-bold text-white mb-3">
+                                <h3 className="mb-3 text-2xl font-bold text-white">
                                     {item.degree}
                                 </h3>
 
-                                <p className="text-blue-400 font-medium mb-4">
+                                <p className="mb-4 font-medium text-blue-400">
                                     {item.institution}
                                 </p>
 
-                                <p className="text-gray-400 leading-relaxed">
+                                <p className="leading-relaxed text-gray-400">
                                     {item.description}
                                 </p>
+
+                                <div className="mt-8 flex items-center gap-2 border-t border-white/10 pt-5 text-sm text-green-400">
+                                    <CheckCircle2
+                                        size={17}
+                                        aria-hidden="true"
+                                    />
+
+                                    Formación académica completada
+                                </div>
                             </motion.article>
                         );
                     })}
 
-                    {/* Aprendizaje continuo */}
+                    {/* APRENDIZAJE CONTINUO */}
+
                     <motion.article
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.15 }}
-                        className="p-8 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-purple-500/30 transition-colors"
+                        className="rounded-2xl border border-white/10 bg-white/[0.03] p-8 transition-colors hover:border-purple-500/30"
                     >
-                        <div className="p-3 rounded-xl bg-purple-500/10 text-purple-400 w-fit mb-8">
-                            <BookOpen size={28} aria-hidden="true" />
+                        <div className="mb-8 w-fit rounded-xl bg-purple-500/10 p-3 text-purple-400">
+                            <BookOpen
+                                size={28}
+                                aria-hidden="true"
+                            />
                         </div>
 
-                        <h3 className="text-2xl font-bold text-white mb-4">
+                        <h3 className="mb-4 text-2xl font-bold text-white">
                             Aprendizaje continuo
                         </h3>
 
-                        <p className="text-gray-400 leading-relaxed mb-6">
+                        <p className="mb-6 leading-relaxed text-gray-400">
                             Interés constante en fortalecer mis conocimientos
-                            en arquitectura de software, desarrollo full stack,
+                            en arquitectura de software, desarrollo Full Stack,
                             integración de servicios, bases de datos, calidad
                             de código y nuevas tecnologías.
                         </p>
 
-                        <div className="flex items-center gap-3 text-sm text-purple-400">
-                            <Award size={18} aria-hidden="true" />
+                        <div className="mb-6 flex items-center gap-3 text-sm text-purple-400">
+                            <Award
+                                size={18}
+                                aria-hidden="true"
+                            />
+
                             <span>
                                 Formación y actualización profesional
                             </span>
                         </div>
+
+                        <div className="flex flex-wrap gap-2 border-t border-white/10 pt-5">
+                            {[
+                                'Desarrollo de software',
+                                'Arquitectura',
+                                'Bases de datos',
+                                'Calidad de código',
+                            ].map((area) => (
+                                <span
+                                    key={area}
+                                    className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs text-gray-400"
+                                >
+                                    {area}
+                                </span>
+                            ))}
+                        </div>
                     </motion.article>
                 </div>
 
-                {/* Certificaciones */}
+                {/* ==================================================
+                    CERTIFICACIONES
+                ================================================== */}
+
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="mt-16"
+                    className="mt-20"
                 >
-                    {/* Título y controles */}
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 mb-8">
+                    {/* ENCABEZADO Y CONTROLES */}
+
+                    <div className="mb-8 flex flex-col justify-between gap-5 sm:flex-row sm:items-center">
                         <div className="flex items-center gap-3">
-                            <div className="p-3 rounded-xl bg-blue-500/10 text-blue-400">
-                                <Award size={24} aria-hidden="true" />
+                            <div className="rounded-xl bg-blue-500/10 p-3 text-blue-400">
+                                <Award
+                                    size={24}
+                                    aria-hidden="true"
+                                />
                             </div>
 
                             <div>
                                 <h3 className="text-2xl font-bold text-white">
                                     Certificaciones
                                 </h3>
-                                <p className="text-gray-400 text-sm mt-1">
+
+                                <p className="mt-1 text-sm text-gray-400">
                                     Cursos y formación complementaria
                                 </p>
                             </div>
                         </div>
 
+                        {/* CONTROLES DEL CARRUSEL */}
+
                         <div className="flex items-center gap-3">
                             <button
                                 type="button"
-                                onClick={() => {
-                                    const container = document.getElementById(
-                                        'certifications-carousel'
-                                    );
-
-                                    container?.scrollBy({
-                                        left: -container.clientWidth,
-                                        behavior: 'smooth',
-                                    });
-                                }}
-                                aria-label="Certificaciones anteriores"
-                                className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:border-blue-500/50 transition-all"
+                                onClick={() => scrollCarousel('left')}
+                                aria-label="Ver certificaciones anteriores"
+                                className="rounded-xl border border-white/10 bg-white/5 p-2.5 text-gray-300 transition-all hover:border-blue-500/50 hover:text-white"
                             >
-                                <span aria-hidden="true">←</span>
+                                <ChevronLeft
+                                    size={20}
+                                    aria-hidden="true"
+                                />
                             </button>
 
                             <button
                                 type="button"
-                                onClick={() => {
-                                    const container = document.getElementById(
-                                        'certifications-carousel'
-                                    );
-
-                                    container?.scrollBy({
-                                        left: container.clientWidth,
-                                        behavior: 'smooth',
-                                    });
-                                }}
-                                aria-label="Siguientes certificaciones"
-                                className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:border-blue-500/50 transition-all"
+                                onClick={() => scrollCarousel('right')}
+                                aria-label="Ver siguientes certificaciones"
+                                className="rounded-xl border border-white/10 bg-white/5 p-2.5 text-gray-300 transition-all hover:border-blue-500/50 hover:text-white"
                             >
-                                <span aria-hidden="true">→</span>
+                                <ChevronRight
+                                    size={20}
+                                    aria-hidden="true"
+                                />
                             </button>
                         </div>
                     </div>
 
-                    {/* Carrusel */}
+                    {/* CARRUSEL */}
+
                     <div
-                        id="certifications-carousel"
-                        className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                        ref={carouselRef}
+                        aria-label="Listado de certificaciones"
+                        className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
                     >
                         {certifications.map((certification, index) => (
                             <motion.article
@@ -252,54 +370,81 @@ function Education() {
                                     duration: 0.4,
                                     delay: index * 0.1,
                                 }}
-                                className="flex flex-col flex-none w-[72%] sm:w-[calc(40%-12px)] lg:w-[calc(25%-12px)] snap-start p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-blue-500/30 transition-all"
+                                className="flex w-[85%] flex-none snap-start flex-col rounded-xl border border-white/10 bg-white/[0.03] p-5 transition-all hover:border-blue-500/30 sm:w-[calc(50%-8px)] lg:w-[calc(33.333%-11px)] xl:w-[calc(25%-12px)]"
                             >
-                                <div className="flex items-center justify-between gap-2 mb-4">
-                                    <div className="p-2 rounded-lg bg-blue-500/10 text-blue-400">
-                                        <Award size={18} aria-hidden="true" />
+                                {/* ICONO Y PLATAFORMA */}
+
+                                <div className="mb-5 flex items-center justify-between gap-3">
+                                    <div className="rounded-lg bg-blue-500/10 p-2.5 text-blue-400">
+                                        <Award
+                                            size={20}
+                                            aria-hidden="true"
+                                        />
                                     </div>
 
-                                    <span className="text-[11px] text-gray-500 text-right">
+                                    <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] text-gray-400">
                                         {certification.platform}
                                     </span>
                                 </div>
 
-                                <h4 className="text-sm font-semibold text-white leading-snug mb-3">
+                                {/* NOMBRE */}
+
+                                <h4 className="mb-3 text-sm font-semibold leading-relaxed text-white">
                                     {certification.name}
                                 </h4>
 
+                                {/* ENTRENADOR */}
+
                                 {certification.trainer && (
-                                    <p className="text-gray-500 text-xs mb-3">
+                                    <p className="mb-3 text-xs text-gray-500">
                                         {certification.trainer}
                                     </p>
                                 )}
 
-                                <div className="flex items-center gap-2 text-xs text-gray-400 mb-3">
-                                    <CalendarDays size={13} aria-hidden="true" />
+                                {/* FECHA */}
+
+                                <div className="mb-5 flex items-center gap-2 text-xs text-gray-400">
+                                    <CalendarDays
+                                        size={14}
+                                        aria-hidden="true"
+                                    />
+
                                     {certification.date}
                                 </div>
 
-                                <a
-                                    href={certification.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors w-fit"
-                                >
-                                    Ver certificado
-                                    <Award size={14} aria-hidden="true" />
-                                </a>
+                                {/* CREDENCIAL */}
+
+                                <div className="mt-auto border-t border-white/10 pt-4">
+                                    <a
+                                        href={certification.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label={`Ver certificado: ${certification.name}`}
+                                        className="inline-flex items-center gap-2 text-xs font-medium text-blue-400 transition-colors hover:text-blue-300"
+                                    >
+                                        Ver certificado
+
+                                        <ExternalLink
+                                            size={14}
+                                            aria-hidden="true"
+                                        />
+                                    </a>
+                                </div>
                             </motion.article>
                         ))}
                     </div>
 
-                    <p className="text-xs text-gray-500 mt-2">
-                        Desliza para explorar todas las certificaciones.
+                    <p className="mt-2 text-xs text-gray-500">
+                        Desliza horizontalmente para explorar todas las certificaciones.
                     </p>
                 </motion.div>
             </div>
-              <div
+
+            {/* SEPARADOR */}
+
+            <div
                 aria-hidden="true"
-                className="absolute bottom-0 left-0 w-full h-px bg-white/10"
+                className="absolute bottom-0 left-0 h-px w-full bg-white/10"
             />
         </section>
     );

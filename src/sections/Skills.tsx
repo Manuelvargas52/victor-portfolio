@@ -8,12 +8,15 @@ import {
     FlaskConical,
     Wrench,
     BarChart3,
+    Workflow,
+    Layers3,
 } from 'lucide-react';
 
 const skillCategories = [
     {
         title: 'Frontend Development',
-        description: 'Desarrollo de interfaces y aplicaciones web.',
+        description:
+            'Desarrollo de interfaces, aplicaciones web y arquitecturas de componentes reutilizables.',
         icon: Code2,
         skills: [
             'Angular',
@@ -21,59 +24,96 @@ const skillCategories = [
             'Stencil',
             'TypeScript',
             'JavaScript',
-            'HTML',
-            'CSS',
-            'Tailwind CSS',
+            'HTML5',
+            'CSS3',
         ],
     },
     {
         title: 'Backend Development',
-        description: 'Desarrollo de servicios y lógica de negocio.',
+        description:
+            'Desarrollo de funcionalidades backend, servicios e integración mediante APIs REST.',
         icon: Server,
-        skills: ['Java', 'Spring Boot', 'Node.js', 'Python'],
+        skills: [
+            'Java',
+            'Spring Boot',
+            'PHP',
+            'APIs REST',
+        ],
     },
     {
         title: 'Bases de datos',
-        description: 'Gestión, consultas y transformación de datos.',
+        description:
+            'Diseño, administración, consultas y gestión de bases de datos relacionales.',
         icon: Database,
         skills: [
-            'MySQL',
+            'SQL',
             'PostgreSQL',
+            'MySQL',
             'MariaDB',
             'Oracle SQL',
-            'SQL',
         ],
     },
     {
         title: 'Desarrollo móvil',
-        description: 'Desarrollo de servicios, lógica de negocio e integración de aplicaciones.',
+        description:
+            'Desarrollo y mantenimiento de componentes nativos y multiplataforma.',
         icon: Smartphone,
-        skills: ['Kotlin', 'React Native'],
-    },
-    {
-        title: 'Testing & Quality',
-        description: 'Pruebas y validación de componentes de software.',
-        icon: FlaskConical,
         skills: [
-            'Vitest',
-            'Cypress',
-            'React Testing Library',
-            'Unit Testing',
+            'Kotlin',
+            'React Native',
         ],
     },
     {
-        title: 'Tools & DevOps',
+        title: 'Testing & Quality',
         description:
-            'Herramientas de desarrollo, publicación y control de versiones.',
-        icon: Wrench,
-        skills: ['Git', 'NPM', 'JFrog', 'Maven'],
+            'Validación de componentes, pruebas unitarias y medición de cobertura de código.',
+        icon: FlaskConical,
+        skills: [
+            'Jest',
+            'Unit Testing',
+            'Code Coverage',
+            'Accessibility (A11Y)',
+            'Responsive Design',
+        ],
+    },
+    {
+        title: 'DevOps & Tools',
+        description:
+            'Automatización de flujos de integración y despliegue, control de versiones y publicación de paquetes.',
+        icon: Workflow,
+        skills: [
+            'Git',
+            'GitHub Actions',
+            'CI/CD',
+            'NPM',
+            'Maven',
+            'JFrog',
+        ],
     },
     {
         title: 'Data & Analytics',
         description:
-            'Análisis, automatización y visualización de información.',
+            'Extracción, transformación, automatización y visualización de información para apoyar decisiones de negocio.',
         icon: BarChart3,
-        skills: ['Power BI', 'Excel', 'Python', 'SQL'],
+        skills: [
+            'Python',
+            'SQL',
+            'Power BI',
+            'Excel',
+        ],
+    },
+    {
+        title: 'Arquitectura & Design Systems',
+        description:
+            'Construcción de ecosistemas de componentes reutilizables para plataformas web y móviles.',
+        icon: Layers3,
+        skills: [
+            'Design Systems',
+            'Atomic Design',
+            'Web Components',
+            'Component Architecture',
+            'Semantic Versioning',
+        ],
     },
 ];
 
@@ -90,6 +130,7 @@ function Skills() {
             />
 
             <div className="relative z-10 max-w-7xl mx-auto">
+
                 {/* Encabezado */}
                 <motion.div
                     initial={{ opacity: 0, y: 25 }}
@@ -113,9 +154,10 @@ function Skills() {
                     </h2>
 
                     <p className="text-gray-400 text-lg mt-6 leading-relaxed">
-                        Tecnologías, herramientas y frameworks con los que
-                        he trabajado en proyectos de desarrollo de software,
-                        construcción de componentes y análisis de datos.
+                        Tecnologías, herramientas y metodologías utilizadas
+                        en proyectos de desarrollo de software, arquitectura
+                        frontend, integración backend, automatización y
+                        análisis de datos.
                     </p>
                 </motion.div>
 
@@ -176,6 +218,7 @@ function Skills() {
                     })}
                 </div>
             </div>
+
             <div
                 aria-hidden="true"
                 className="absolute bottom-0 left-0 w-full h-px bg-white/10"
