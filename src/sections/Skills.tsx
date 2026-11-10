@@ -6,7 +6,6 @@ import {
     Database,
     Smartphone,
     FlaskConical,
-    Wrench,
     BarChart3,
     Workflow,
     Layers3,
